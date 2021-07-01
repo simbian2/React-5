@@ -97,6 +97,16 @@
         class CommentList extends React.Component{
             //반복문을 통해서 html을 새로 만드는 코드를 짭니다
 
+            state = {
+                content:'',
+                key:Infinity,
+            }
+
+            handleClick = (key) => {
+                this.setState({key:key})
+            }
+
+
             renderList = ()=>{
                 return(             // 요소값, 인덱스값
                     this.props.items.map((item,key)=>{
@@ -105,9 +115,15 @@
                                 <ul className="comment-row">
                                     <li className="comment-id">{item.userid}</li>
                                     <li className="comment-content"
-                                        onClick = { ()=>{ this.props.onInput() } } 
                                         >
-                                        {item.content}
+                                        <span onClick = {() =>{this.handleClick(key)}}>
+                                            {key === this.state.key ?                     <input 
+                                    type="text"  
+                                    className="comment-update-input"
+                                    value = {item.content}
+                                /> : item.content}
+                                        </span>
+                                        
                                         <span 
                                             className = "comment-delete-btn"
                                             onClick = { ()=>{this.props.onDelete(key)} }
@@ -160,17 +176,6 @@
 
             onClick = (e) =>{
                 e.data.target
-            }
-
-            onInput = (data) =>{
-                //data 변수 1이라고 할 때
-                console.log(data)
-                let {list} = {...this.state} 
-                let newList = list.filter((value,index)=>{ //내가 가지고 있는 데이터 1만 빼줘
-                    return data === index
-                }) 
-
-                this.setState({list:newList})
             }
 
             onDelete = (data) =>{
