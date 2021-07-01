@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        //목표 - input 에 대해서 할건데 로그인에서 상태값을 가지고 그걸
+        //app 에다가 전달해줄것임! 
+        //아직 먼소린지 모르겠음 일단 따라쳐보면 이해되겠지머
+        class LoginBox extends React.Component{
+            state = {
+                userid: "",
+                userpw : ""
+            }
+
+            handleChange = (e) =>{
+                //this.setState({ userid:e.target.value })
+                //그럼 매번 변수를 만들어줘야 하나요?
+                //아님미다 자바스크립트로 
+                //만약 e.target 이 바라보는 쪽이 userid면
+                //userid로 해주ㅜ고 password면 패스워드로 가변적으로 바꿔주는
+                //코드를 추가해주면 함수 하나로 변수를 다 사용할 수 있습니다.
+                // 앞에 변수 이름이 들어가는 부분,
+                //여기서는 userid 부분에 [e.target.name] 라고 설정해주면 됨
+                this.setState({ [e.target.name]:e.target.value })
+            }
+
+            handleSubmit = (e) =>{
+                e.preventDefault()
+                this.props.loginInfo(this.state)
+                this.setState({
+                    userid: "",
+                    userpw:"",
+                })
+            }
+
+            render(){
+                return(
+                    <form>
+                        <input 
+                            onSubmit = {this.handleSubmit}
+                            type = "text"
+                            placeholder="아이디를 입력해주세요"
+                            value={this.state.userid}
+                            inChange = {this.handleChange}
+                            name="userid"
+                        />    
+                        <input 
+                            type = "password"
+                            placeholder="ㅍㅐ스워드를 입력해주세요"
+                            value={this.state.password}
+                            name="userpassword"
+                        />
+                        <button type="submit">로그인</button>
+                    </form>
+                )
+            }
+        } 
+
+
+        class App extends React.Component{
+            
+            loginInfo = (data) =>{
+                conosle.log(data)
+            }
+            
+            render(){
+                return(
+                    <div>
+                        <LoginBox onCreate={this.loginInfo}/>
+                    </div>
+                )
+            }
+        }
+        
+        //16 17 번 합치세요
+        //App 컴포넌트에다가 loginBox 컴포넌트를 넣고 아이디 패스워드가 admin이면
+        //isLogin  true 주도록 (값을 넘겨줬을 때)
+        //버튼을 클릭했을 때 isLogin을 false로 바꿔달래요
+
+        ReactDOM.render(
+            <App/>,
+            document.querySelector("#root")
+        )
+        
+    </script>
+</body>
+</html>

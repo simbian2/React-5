@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- 얘가 있어야 리액트를 사용할 수 있습니다 -->
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- 이건 화면에 보여줄때 사용합니다. -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 이거는 jsx 사용하기 위해 필요하대요. 이거 쓰려면 script 안에 text/babel로 바꿔줘야 함 -->
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    //ReactDOM.render는 인자값을 두가지 받습니다.
+    //1. 내가 넣을 내용 2. 내가 넣을 위치
+    class LoginBtn extends React.Component{
+        constructor(props){
+            super(props)
+            //state : 상태, 변경되는 값, 수정되는 값. 이라고 칭함.
+            this.state = {
+                //내가 이 버튼을 클릭한 적이 있는지 없는지를 
+                //state를 이용해서 확인해보려고 함.
+                //이 코드를 실제 쓰는 코드가 아닌 개념을 배우기 위한 코드임~
+                //state는 리액트의 핵심임! 이걸 이해하면 다 이해한거래요
+                //state - 바뀌는 값... 변수값?? 
+                isLogin:false,
+            }
+        }
+        render(){
+            return(
+                //JSX형태
+                // javascript + xml 
+                //JSON - { name : ingoo }
+                //XML - <name> ingoo </name>   // setState 를 써주면 이제부터 상태값을 바꿀거야 라는뜻.
+                // 여기서 isLogin : ! this.state.isLogin 이거는 isLogin이라는 상태값을 !this.state.isLogin 이라는 상태값으로 바꿀거라는 뜻이니까
+                // false -> true로 바꿀 거라는 뜻. state가 변경될 때 마다 render는 새로 해주게 된다.
+                <button onClick={()=>{ this.setState({isLogin:!this.state.isLogin}) }}>     
+                    {this.state.isLogin ? '로그아웃':'로그인'}
+                </button>
+                //이 코드랑 바로 아래 주석 코드랑 같은 코드임
+                // React.createElement('button',{onClick:()=>{ this.setState({isLogin:!this.state.isLogin}) }},this.state.isLogin ? '로그아웃':'로그인')
+                //값을 변경할때는 항상 setState라는 매서드를 사용해야만 함!
+            );
+        }
+    }    
+    ReactDOM.render( 
+        React.createElement(LoginBtn),
+        // ("button",null,"버튼"), //이 세번째 인자값은 innerHTML이라고 보면됨
+        document.querySelector("#root")
+    )
+    
+    // 컴포넌트 만들기 -> 컴포넌트가 뭔가요?
+    //1. 클래스 이용
+    //이거 그냥 외우기! 어차피 class 여기에밖에 안씀
+
+    </script>
+</body>
+</html>

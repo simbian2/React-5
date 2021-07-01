@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+<script type="text/babel">
+
+
+    class Header extends React.Component{
+        
+    }
+
+    class Logr extends React.Component{
+
+    }
+
+    class Menu extends React.Component{
+        render(){
+            return(
+                <>
+                <MenuItem />
+                <MenuItem />
+                <MenuItem />
+                </>
+            )
+        }
+    }
+    class MenuItem extends React.Component{
+        render(){
+            return 
+            <li>
+                <ul>
+                    <li class="comment-row">구무녕ㅇ!!!</li>
+                    <li class="comment-content">안녕하세요</li>
+                    <li class="comment-date">2021-06-28</li>
+                </ul>
+            </li>
+        }
+    }
+
+    class App extends React.Component{
+        state = {
+            text : "gpfdsojkfa!!!!"
+        }
+        render(){
+            return(
+                <Header>
+                    <Logo/>
+                    <Menu/>
+                </Header>
+            )
+        }
+    }
+
+    ReactDOM.render(
+        <App/>,
+        document.querySelector('root')            
+    )
+    
+    </script>
+</body>
+</html>

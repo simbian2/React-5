@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <!-- 얘가 있어야 리액트를 사용할 수 있습니다 -->
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- 이건 화면에 보여줄때 사용합니다. -->
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+    //ReactDOM.render는 인자값을 두가지 받습니다.
+    //1. 내가 넣을 내용 2. 내가 넣을 위치
+    class LoginBtn extends React.Component{
+        constructor(props){
+            super(props)
+            //state : 상태, 변경되는 값, 수정되는 값. 이라고 칭함.
+            this.state = {
+                //내가 이 버튼을 클릭한 적이 있는지 없는지를 
+                //state를 이용해서 확인해보려고 함.
+                //이 코드를 실제 쓰는 코드가 아닌 개념을 배우기 위한 코드임~
+                isLogin:false,
+            }
+        }
+        render(){
+            // return(
+            //     React.createElement( 'li', null , '이우성' )
+            // )
+            return(
+                React.createElement('button',{onClick:()=>{ this.setState({isLogin:!this.state.isLogin}) }},this.state.isLogin ? '로그아웃':'로그인')    
+                //값을 변경할때는 항상 setState라는 매서드를 사용해야만 함!
+            )
+           
+        }
+    }    
+    ReactDOM.render( 
+        React.createElement(LoginBtn),
+        // ("button",null,"버튼"), //이 세번째 인자값은 innerHTML이라고 보면됨
+        document.querySelector("#root")
+    )
+    
+    // 컴포넌트 만들기 -> 컴포넌트가 뭔가요?
+
+    //1. 클래스 이용
+    //이거 그냥 외우기! 어차피 class 여기에밖에 안씀
+
+    </script>
+</body>
+</html>
